@@ -4,7 +4,7 @@ const sendBtn = document.querySelector('#sendBtn');
 const blockMsg = document.querySelector('#blockMsg');
 const blockHistory = document.querySelector('#blockHistory');
 const counterTxt = document.querySelector('#counterTxt');
-
+const resetBtn = document.querySelector('#resetBtn');
 
 //Calculador de numeros random
 let numRandom = "95"
@@ -16,14 +16,14 @@ let counter = 0;
 const limit = 10;
 
 // Añadimos los eventos
-sendBtn.addEventListener('click', () => {
+sendBtn.addEventListener('click', () => {   //Valor correcto
     if(numero.value === numRandom){
         alert("¡Has Ganado!");
         numero.setAttribute('disabled', true);
         sendBtn.setAttribute('disabled', true);
         blockMsg.innerText = "Felicidades!";
 
-    }else if(numero.value > numRandom){
+    }else if(numero.value > numRandom){ // Valor muy alto
         blockMsg.innerText = "Número muy alto!";
         counter++;
         let p = document.createElement("p");
@@ -31,7 +31,7 @@ sendBtn.addEventListener('click', () => {
         blockHistory.appendChild(p);
         counterTxt.innerText = counter;
 
-    }else{
+    }else{  // Valor muy bajo
         blockMsg.innerText = "Numero muy bajo!";
         counter++;
         let p = document.createElement("p");
@@ -39,10 +39,18 @@ sendBtn.addEventListener('click', () => {
         blockHistory.appendChild(p);
         counterTxt.innerText = counter;
     }
-       if(counter >= 10){
+       if(counter >= 10){   // Comprueba si llega al limite
             alert("¡Has perdido!");
-            numero.setAttribute('disabled', true);
-            sendBtn.setAttribute('disabled', true);
+            numero.toggleAttribute('disabled', true);
+            sendBtn.toggleAttribute('disabled', true);
             blockMsg.innerText = `El número correcto era ${numRandom}.`;
         } 
+    });
+
+resetBtn.addEventListener('click', () => {   // Reset al Formulario
+    counter = 0;
+    counterTxt.innerText = counter;
+    numero.toggleAttribute('disabled', false);
+    sendBtn.toggleAttribute('disabled', false);
+    blockHistory.removeChild(p);
 });
