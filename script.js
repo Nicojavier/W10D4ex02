@@ -8,7 +8,6 @@ const counterTxt = document.querySelector('#counterTxt');
 
 //Calculador de numeros random
 let numRandom = Math.floor(Math.random()*100)+1;
-const numOk = numRandom;
 
 //Contador de intentos
 let counter = 0;
@@ -16,7 +15,7 @@ const limit = 10;
 
 // Añadimos los eventos
 sendBtn.addEventListener('click', () => { 
-    if(numero.value === numOk){
+    if(numero.value === numRandom){
         alert("Felicidades!");
         blockMsg.innerText = "Numero Correcto, Felicidades!";
         numero.setAttribute('disabled', true);
