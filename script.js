@@ -37,8 +37,5 @@ sendBtn.addEventListener('click', () => {
             sendBtn.setAttribute('disabled', true);
             blockMsg.innerText = `El número correcto era ${numRandom}.`;
         } 
-    }else if(numero.value > numOk){
-        blockMsg.innerText = `No podemos ${numRandom}`;
-    }
 }
 });
