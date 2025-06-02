@@ -20,19 +20,22 @@ sendBtn.addEventListener('click', () => {   //Valor correcto
         numero.setAttribute('disabled', true);
         sendBtn.setAttribute('disabled', true);
         blockMsg.innerText = "Felicidades!";
+        blockMsg.classList = "Correcto";
 
     }else if(parseInt(numero.value) > numRandom){ // Valor muy alto
         blockMsg.innerText = "Número muy alto!";
+        blockMsg.classList = "Incorrecto";
         counter++;
-        let p = document.createElement("p");
+        let p = document.createElement("li");
         p.innerText = `Intento ${counter}: ${numero.value}`;
         blockHistory.appendChild(p);
         counterTxt.innerText = counter;
 
     }else{  // Valor muy bajo
         blockMsg.innerText = "Numero muy bajo!";
+        blockMsg.classList = "Incorrecto";
         counter++;
-        let p = document.createElement("p");
+        let p = document.createElement("li");
         p.innerText = `Intento ${counter}: ${numero.value}`;
         blockHistory.appendChild(p);
         counterTxt.innerText = counter;
