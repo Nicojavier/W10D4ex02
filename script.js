@@ -7,34 +7,42 @@ const counterTxt = document.querySelector('#counterTxt');
 
 
 //Calculador de numeros random
-let numRandom = Math.floor(Math.random()*100)+1;
+let numRandom = "95"
+
+Math.floor(Math.random() * 100) + 1;
 
 //Contador de intentos
 let counter = 0;
 const limit = 10;
 
 // Añadimos los eventos
-sendBtn.addEventListener('click', () => { 
+sendBtn.addEventListener('click', () => {
     if(numero.value === numRandom){
-        alert("Felicidades!");
-        blockMsg.innerText = "Numero Correcto, Felicidades!";
+        alert("¡Has Ganado!");
         numero.setAttribute('disabled', true);
         sendBtn.setAttribute('disabled', true);
-    }else{
-        //Aumenta uno al contador
+        blockMsg.innerText = "Felicidades!";
+
+    }else if(numero.value > numRandom){
+        blockMsg.innerText = "Número muy alto!";
         counter++;
-        counterTxt.innerText = counter;
-        //Agrega el historial
         let p = document.createElement("p");
         p.innerText = `Intento ${counter}: ${numero.value}`;
         blockHistory.appendChild(p);
-    
-        // Límite de eventos y Perdida
-        if (counter >= 10){
+        counterTxt.innerText = counter;
+
+    }else{
+        blockMsg.innerText = "Numero muy bajo!";
+        counter++;
+        let p = document.createElement("p");
+        p.innerText = `Intento ${counter}: ${numero.value}`;
+        blockHistory.appendChild(p);
+        counterTxt.innerText = counter;
+    }
+       if(counter >= 10){
             alert("¡Has perdido!");
             numero.setAttribute('disabled', true);
             sendBtn.setAttribute('disabled', true);
             blockMsg.innerText = `El número correcto era ${numRandom}.`;
         } 
-}
 });
