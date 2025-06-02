@@ -7,9 +7,7 @@ const counterTxt = document.querySelector('#counterTxt');
 const resetBtn = document.querySelector('#resetBtn');
 
 //Calculador de numeros random
-let numRandom = "95"
-
-Math.floor(Math.random() * 100) + 1;
+let numRandom = Math.floor(Math.random() * 100) + 1;
 
 //Contador de intentos
 let counter = 0;
@@ -17,13 +15,13 @@ const limit = 10;
 
 // Añadimos los eventos
 sendBtn.addEventListener('click', () => {   //Valor correcto
-    if(numero.value === numRandom){
+    if(parseInt(numero.value) === numRandom){
         alert("¡Has Ganado!");
         numero.setAttribute('disabled', true);
         sendBtn.setAttribute('disabled', true);
         blockMsg.innerText = "Felicidades!";
 
-    }else if(numero.value > numRandom){ // Valor muy alto
+    }else if(parseInt(numero.value) > numRandom){ // Valor muy alto
         blockMsg.innerText = "Número muy alto!";
         counter++;
         let p = document.createElement("p");
@@ -49,8 +47,10 @@ sendBtn.addEventListener('click', () => {   //Valor correcto
 
 resetBtn.addEventListener('click', () => {   // Reset al Formulario
     counter = 0;
+    numRandom = Math.floor(Math.random() * 100) + 1;
     counterTxt.innerText = counter;
     numero.toggleAttribute('disabled', false);
     sendBtn.toggleAttribute('disabled', false);
-    blockHistory.removeChild(p);
+    blockHistory.innerHTML= "";
+    blockMsg.innerText = "";
 });
